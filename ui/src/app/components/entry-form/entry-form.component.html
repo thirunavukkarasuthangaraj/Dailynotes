@@ -1,0 +1,65 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Add New Learning Entry</h2>
+
+  <form #entryForm="ngForm" (ngSubmit)="save()" class="card p-4 shadow-sm" novalidate>
+
+    <!-- Show formErrors from TS (custom validation) -->
+    <div *ngIf="formErrors.length > 0" class="alert alert-danger">
+      <ul class="mb-0">
+        <li *ngFor="let err of formErrors">{{ err }}</li>
+      </ul>
+    </div>
+
+    <!-- Title -->
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input type="text" name="title" class="form-control" required minlength="3" [(ngModel)]="entry.title"
+        #title="ngModel" />
+      <div class="text-danger" *ngIf="title.invalid && title.touched">
+        Title is required (min 3 characters).
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea name="description" class="form-control" required minlength="5" [(ngModel)]="entry.description"
+        #description="ngModel"></textarea>
+      <div class="text-danger" *ngIf="description.invalid && description.touched">
+        Description is required (min 5 characters).
+      </div>
+    </div>
+
+    <!-- Date -->
+    <div class="mb-3">
+      <label class="form-label">Date</label>
+      <input type="date" name="date" class="form-control" required [(ngModel)]="entry.date" #date="ngModel" />
+      <div class="text-danger" *ngIf="date.invalid && date.touched">
+        Date is required.
+      </div>
+    </div>
+
+    <!-- Tags -->
+    <div class="mb-3">
+      <label class="form-label">Tags</label>
+      <input type="text" name="tags" class="form-control" [(ngModel)]="entry.tags"
+        placeholder="e.g. Angular, Spring Boot" />
+    </div>
+
+    <!-- Image Upload -->
+    <div class="mb-3">
+      <label class="form-label">Upload Image</label>
+      <input type="file" class="form-control" (change)="onFileChange($event)" accept="image/*" />
+      <div class="mt-2" *ngIf="preview">
+        <p class="mb-1">Preview:</p>
+        <img *ngIf="entry.imageUrl"  style="width: 150px; height: 100px;" [src]="url + entry.imageUrl" class="img-fluid rounded mt-2" width="100%" />
+      </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary w-100" [disabled]="entryForm.invalid">
+      Save Entry
+    </button>
+
+  </form>
+</div>

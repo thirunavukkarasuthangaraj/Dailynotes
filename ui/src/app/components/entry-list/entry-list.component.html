@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">My Learning History</h2>
+
+  <!-- Filter input -->
+  <div class="mb-4">
+    <input type="text" [(ngModel)]="filterTag" class="form-control" placeholder="Filter by tag or language..." />
+  </div>
+
+  <div *ngIf="filteredEntries().length === 0" class="alert alert-info text-center">
+    No matching entries found.
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2 g-4" *ngIf="filteredEntries().length > 0">
+    <div class="col" *ngFor="let entry of filteredEntries(); let i = index">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">#{{ i + 1 }} - {{ entry.title }}</h5>
+          <p class="card-text">{{ entry.description }}</p>
+          <p><strong>Date:</strong> {{ entry.date }}</p>
+          <p><strong>Tags:</strong> <span class="badge bg-secondary">{{ entry.tags }}</span></p>
+          <img *ngIf="entry.imageUrl"  style="width: 150px; height: 150px;"  [src]="'http://localhost:8080' + entry.imageUrl" class="img-fluid rounded mt-2" />
+        </div>
+        <div class="card-footer text-end">
+          <button class="btn btn-sm btn-outline-primary me-2" (click)="edit(entry)">Edit</button>
+          <button class="btn btn-sm btn-outline-danger" (click)="delete(entry.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

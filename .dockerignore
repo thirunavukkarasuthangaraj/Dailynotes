@@ -1,0 +1,46 @@
+# Dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Build output
+dist
+tmp
+out-tsc
+bazel-out
+
+# IDE and editor files
+.idea
+.project
+.classpath
+.c9
+*.launch
+.settings
+*.sublime-workspace
+.vscode
+.history
+
+# Testing and coverage
+coverage
+.angular/cache
+sass-cache
+connect.lock
+libpeerconnection.log
+testem.log
+typings
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Environment files
+.env
+.env.* 
