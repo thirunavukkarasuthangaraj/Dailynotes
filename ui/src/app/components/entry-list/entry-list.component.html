@@ -18,7 +18,7 @@
           <p class="card-text">{{ entry.description }}</p>
           <p><strong>Date:</strong> {{ entry.date }}</p>
           <p><strong>Tags:</strong> <span class="badge bg-secondary">{{ entry.tags }}</span></p>
-          <img *ngIf="entry.imageUrl"  style="width: 150px; height: 150px;"  [src]="'http://localhost:8080' + entry.imageUrl" class="img-fluid rounded mt-2" />
+          <img *ngIf="entry.imageUrl"  style="width: 150px; height: 150px;"  [src]="url + entry.imageUrl" class="img-fluid rounded mt-2" />
         </div>
         <div class="card-footer text-end">
           <button class="btn btn-sm btn-outline-primary me-2" (click)="edit(entry)">Edit</button>
