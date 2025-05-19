@@ -8,14 +8,14 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_DB: worklogdb
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: thiru
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  backend:
+  server:
     build:
-      context: ./backend
+      context: ./server
     container_name: springboot_server
     ports:
       - "8081:8080"
@@ -23,18 +23,18 @@ services:
       - db
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/worklogdb
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: thiru
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
 
-  frontend:
+  ui:
     build:
-      context: ./frontend
+      context: ./ui
     container_name: angular_ui
     ports:
       - "8080:80"
     depends_on:
-      - backend
+      - server
 
 volumes:
   pgdata:

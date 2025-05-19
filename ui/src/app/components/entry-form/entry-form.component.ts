@@ -13,7 +13,7 @@ export class EntryFormComponent {
   entry: LearningEntry = { title: '', description: '', date: '' };
   selectedFile?: File;
   preview?: string;
-  url: string = "http://localhost:8080";
+  url: string = "http://localhost:8081";
 
   constructor(private service: LearningService, private http: HttpClient, private router: Router) {
     const nav = this.router.getCurrentNavigation();

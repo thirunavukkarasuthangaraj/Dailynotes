@@ -15,7 +15,7 @@ import { LearningService } from 'src/app/services/learning.service';
     selectedFile?: File;
     preview?: string;
     constructor(private service: LearningService, private router: Router) { }
-    url: string = "http://localhost:8080";
+    url: string = "http://localhost:8081";
     selectedTag: string = '';
     availableTags: string[] = [];
   
