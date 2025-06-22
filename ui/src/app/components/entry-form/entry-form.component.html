@@ -23,26 +23,23 @@
     <!-- Description -->
     <div class="mb-3">
       <label class="form-label">Description</label>
-      <textarea name="description" class="form-control" required minlength="5" [(ngModel)]="entry.description"
-        #description="ngModel"></textarea>
-      <div class="text-danger" *ngIf="description.invalid && description.touched">
-        Description is required (min 5 characters).
-      </div>
+      <ngx-editor [(ngModel)]="entry.description" name="description" [editor]="editor"></ngx-editor>
+
     </div>
 
     <!-- Date -->
-    <div class="mb-3">
+    <!-- <div class="mb-3">
       <label class="form-label">Date</label>
       <input type="date" name="date" class="form-control" required [(ngModel)]="entry.date" #date="ngModel" />
       <div class="text-danger" *ngIf="date.invalid && date.touched">
         Date is required.
       </div>
-    </div>
+    </div> -->
 
     <!-- Tags -->
     <div class="mb-3">
       <label class="form-label">Tags</label>
-      <input type="text" name="tags" class="form-control" [(ngModel)]="entry.tags"
+      <input type="text" name="tags" class="form-control" [(ngModel)]="entry.tags" 
         placeholder="e.g. Angular, Spring Boot" />
     </div>
 
@@ -50,7 +47,7 @@
     <div class="mb-3">
       <label class="form-label">Upload Image</label>
       <input type="file" class="form-control" (change)="onFileChange($event)" accept="image/*" />
-      <div class="mt-2" *ngIf="preview">
+      <div class="mt-2" *ngIf="preview || entry.imageUrl">
         <p class="mb-1">Preview:</p>
         <img *ngIf="entry.imageUrl"  style="width: 150px; height: 100px;" [src]="url + entry.imageUrl" class="img-fluid rounded mt-2" width="100%" />
       </div>

@@ -3,7 +3,7 @@
 
   <!-- Filter input -->
   <div class="mb-4">
-    <input type="text" [(ngModel)]="filterTag" class="form-control" placeholder="Filter by tag or language..." />
+    <input type="text" [(ngModel)]="filterTag" class="form-control" placeholder="Filter by tag or language..." name="filterTag" autocomplete="off">
   </div>
 
   <div *ngIf="filteredEntries().length === 0" class="alert alert-info text-center">
@@ -15,10 +15,14 @@
       <div class="card h-100 shadow-sm">
         <div class="card-body">
           <h5 class="card-title">#{{ i + 1 }} - {{ entry.title }}</h5>
-          <p class="card-text">{{ entry.description }}</p>
           <p><strong>Date:</strong> {{ entry.date }}</p>
+
+          <!-- Description -->
+          <!-- <ngx-editor [editor]="editor" [disabled]="true" [ngModel]="entry.description"></ngx-editor>  -->
+          
           <p><strong>Tags:</strong> <span class="badge bg-secondary">{{ entry.tags }}</span></p>
-          <img *ngIf="entry.imageUrl"  style="width: 150px; height: 150px;"  [src]="url + entry.imageUrl" class="img-fluid rounded mt-2" />
+          <img *ngIf="entry.imageUrl" style="width: 150px; height: 150px;" [src]="url + entry.imageUrl"
+            class="img-fluid rounded mt-2" />
         </div>
         <div class="card-footer text-end">
           <button class="btn btn-sm btn-outline-primary me-2" (click)="edit(entry)">Edit</button>

@@ -1,0 +1,31 @@
+<div *ngFor="let benefit of benefits" class="benefit-card">
+  <h4>{{ benefit.name }}</h4>
+
+  <div *ngFor="let tier of benefit.tiers" class="tier-row">
+    <span>
+      {{ tier.minRange }} - {{ tier.maxRange }} {{ benefit.unitLabel }} at ₹{{ tier.pricePerUnit }} / unit
+    </span>
+    <div class="actions">
+      <button class="btn blue" (click)="openEditModal(benefit, tier)">Edit</button>
+      <button class="btn red" (click)="confirmDelete(tier)">Delete</button>
+    </div>
+  </div>
+
+  <button class="btn green add-btn" (click)="openAddModal(benefit)">+ Add Tier</button>
+</div>
+
+<!-- Modal -->
+<div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <h3>{{ editMode ? 'Edit' : 'Add' }} Tier</h3>
+
+    <label>Min Range <input type="number" [(ngModel)]="newTier.minRange" /></label>
+    <label>Max Range <input type="number" [(ngModel)]="newTier.maxRange" /></label>
+    <label>Price/Unit <input type="number" [(ngModel)]="newTier.pricePerUnit" /></label>
+
+    <div class="modal-actions">
+      <button class="btn green" (click)="saveTier()">Save</button>
+      <button class="btn red" (click)="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>

@@ -1,19 +1,21 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LearningEntry } from 'src/app/models/learning-entry.model';
 import { LearningService } from 'src/app/services/learning.service';
+import { Editor } from 'ngx-editor';
 
 @Component({
   selector: 'app-entry-form',
   templateUrl: './entry-form.component.html',
   styleUrls: ['./entry-form.component.scss']
 })
-export class EntryFormComponent {
-  entry: LearningEntry = { title: '', description: '', date: '' };
+export class EntryFormComponent implements OnDestroy, OnInit{
+  entry: LearningEntry = { title: '', description: '', date: new Date().toISOString() };
   selectedFile?: File;
   preview?: string;
-  url: string = "http://localhost:8081";
+  url: string = "http://localhost:8080";
+  editor!: Editor;
 
   constructor(private service: LearningService, private http: HttpClient, private router: Router) {
     const nav = this.router.getCurrentNavigation();
@@ -22,6 +24,11 @@ export class EntryFormComponent {
       this.entry = { ...state.entry };
     }
   }
+
+  ngOnInit() {
+    this.editor = new Editor();
+  }
+
 
   onFileChange(event: any) {
     const file = event.target.files[0];
@@ -32,7 +39,11 @@ export class EntryFormComponent {
       reader.readAsDataURL(file);
     }
   }
-  
+    
+  ngOnDestroy(): void {
+      this.editor.destroy();
+    }
+
 
   save() {
     if (!this.validateForm()) return;

@@ -5,7 +5,7 @@ import { LearningEntry } from '../models/learning-entry.model';
 
 @Injectable({ providedIn: 'root' })
 export class LearningService {
-  private static api = 'http://localhost:8081/api/v1/learn';
+  private static api = 'http://localhost:8080/api/v1/learn';
   constructor(private http: HttpClient) {}
 
   getAll() { return this.http.get<LearningEntry[]>(LearningService.api); }

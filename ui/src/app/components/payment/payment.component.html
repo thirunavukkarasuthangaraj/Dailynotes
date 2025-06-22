@@ -1,0 +1,72 @@
+<div class="payment-container">
+  <h2>SKU ITEMS</h2>
+
+  <!-- Add this inside your summary section above total -->
+<div class="sku-card">
+  <div class="sku-header">
+    <span class="sku-label">Base Plan (ScaleX)</span>
+  </div>
+  <div class="sku-body">
+    <div class="sku-price">
+      $999/mo
+    </div>
+  </div>
+</div>
+
+
+  <div *ngFor="let item of skuItems" class="sku-card">
+    <div class="sku-header">
+      <span class="sku-label">{{ item.label }}</span>
+      <span class="sku-included">Included: {{ item.included }} {{ item.unit }}</span>
+    </div>
+
+    <div class="sku-body">
+      <input
+        class="included-display"
+        [value]="'+' + item.included + ' ' + item.unit"
+        disabled
+      />
+
+      <select class="addon-select" (change)="onAddonChange(item, $event)">
+        <option value="">-- Add more --</option>
+        <option *ngFor="let opt of item.options" [value]="opt.label">
+          {{ opt.label }} — ${{ opt.price }}
+        </option>
+      </select>
+
+      <div class="sku-price">
+        ${{ item.selectedAddon?.price || 0 }}/mo
+      </div>
+    </div>
+  </div>
+
+  <!-- Discount Section -->
+  <div class="discount-box">
+  <label>Discount (%)</label>
+  <input
+    type="number"
+    min="0"
+    max="100"
+    [(ngModel)]="discountPercent"
+    (ngModelChange)="onDiscountChange($event)"
+    placeholder="e.g. 10"
+  />
+</div>
+
+<div *ngIf="getDiscountValue() > 0" class="discount-line">
+  <p>Discount: - ${{ getDiscountValue() }}/mo</p>
+</div>
+  
+
+  <!-- Total Section -->
+  <div class="summary-section">
+    <p class="summary-title">Your estimated total</p>
+    <p class="summary-amount">${{ getFinalTotal() }}/mo</p>
+    <small class="tax-note">* taxes applicable</small>
+
+    <div class="summary-actions">
+      <button class="cancel-btn" (click)="reset()">Cancel</button>
+      <button class="pay-btn" (click)="requestPayment()">Request Payment</button>
+    </div>
+  </div>
+</div>

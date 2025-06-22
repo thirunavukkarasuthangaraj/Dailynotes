@@ -1,0 +1,58 @@
+<div class="container">
+  <h2>SKU ITEMS</h2>
+
+  <form (ngSubmit)="submitPayment()">
+    <div *ngFor="let item of benefits" class="benefit-row">
+      <!-- Left column: Benefit info -->
+      <div class="left">
+        <strong>{{ item.name }}</strong>
+        <div class="desc">{{ item.description }}</div>
+      </div>
+
+      <!-- Center column: Dropdown of tiers -->
+      <div class="center">
+        <select class="form-control"
+                [(ngModel)]="item.selectedTierId"
+                name="tier_{{ item.id }}"
+                (change)="onTierChange(item)">
+          <option [ngValue]="undefined">Select a tier</option>
+          <option *ngFor="let tier of item.tiers" [ngValue]="tier.id">
+            {{ tier.minRange }}–{{ tier.maxRange }} {{ item.unitLabel }}   ${{ tier.pricePerUnit }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Right column: price -->
+      <div class="right">
+        <ng-container *ngIf="getSelectedTier(item); else noPrice">
+          {{ getTierTotal(item) | currency:'USD' }}/mo
+        </ng-container>
+        <ng-template #noPrice>
+          <span>$0/mo</span>
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- Discount input -->
+    <div class="discount-section mt-3">
+      <label>Discount:</label>
+      <input class="form-control"
+             type="text"
+             [(ngModel)]="discountInput"
+             name="discount"
+             placeholder="25%" />
+    </div>
+
+    <!-- Summary -->
+    <div class="summary-box mt-4">
+      <h3>Your estimated total</h3>
+      <h2>{{ getFinalTotal() | currency:'USD' }}/mo</h2>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="actions mt-4">
+      <button type="submit" class="btn btn-dark">Request Payment</button>
+      <button type="button" class="btn btn-light" (click)="resetForm()">Cancel</button>
+    </div>
+  </form>
+</div>

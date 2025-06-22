@@ -1,0 +1,120 @@
+.payment-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
+  font-family: "Segoe UI", sans-serif;
+}
+
+h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 32px;
+  color: #2a2a2a;
+}
+
+.sku-card {
+  border-bottom: 1px solid #eaeaea;
+  padding: 20px 0;
+}
+
+.sku-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.sku-label {
+  font-weight: bold;
+  color: #333;
+}
+
+.sku-body {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.included-display {
+  padding: 6px 10px;
+  font-size: 14px;
+  width: 170px;
+  background: #f6f6f6;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.addon-select {
+  padding: 6px 10px;
+  font-size: 14px;
+  width: 240px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.sku-price {
+  margin-left: auto;
+  font-weight: bold;
+  color: #333;
+  min-width: 80px;
+  text-align: right;
+}
+
+.summary-section {
+  text-align: right;
+  margin-top: 40px;
+}
+
+.summary-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.summary-amount {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2a2a2a;
+  margin-bottom: 4px;
+}
+
+.tax-note {
+  font-size: 12px;
+  color: #999;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.summary-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #eee;
+  color: #333;
+}
+
+.pay-btn {
+  background-color: #007bff;
+  color: white;
+}
+.discount-display {
+  font-size: 0.9rem;
+  color: green;
+  margin-top: -8px;
+  margin-bottom: 10px;
+}

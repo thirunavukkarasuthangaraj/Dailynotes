@@ -1,0 +1,31 @@
+.benefit-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.left {
+    flex: 2;
+}
+
+.center {
+    flex: 2;
+    padding: 0 1rem;
+}
+
+.right {
+    flex: 1;
+    font-weight: bold;
+}
+
+.summary-box {
+    background: #f0f0f0;
+    padding: 1rem;
+    text-align: center;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+}
